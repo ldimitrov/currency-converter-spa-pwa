@@ -7,6 +7,12 @@ window.addEventListener('load', () => {
     const exchangeTemplate = Handlebars.compile($('#exchange-template').html());
     const historicalTemplate = Handlebars.compile($('#historical-template').html());
 
+    // Instantiate api handler
+    const api = axios.create({
+        baseURL: 'http://localhost:3000/api',
+        timeout: 5000,
+    });
+
     // Vanilla Router declaration
     const router = new Router({
         mode: 'history',
@@ -14,24 +20,47 @@ window.addEventListener('load', () => {
             const html = errorTemplate({
                 color: 'orange',
                 title: 'Error 404 - Page not Found!',
+                message: 'This is not the page you are looking for!',
             });
-            el.html(html);
+            element.html(html);
         },
     });
 
-    router.add('/', () => {
+    // Display Error Banner
+    const showError = (error) => {
+        const { title, message } = error.response.data;
+        const html = errorTemplate({ color: 'red', title, message });
+        element.html(html);
+    };
+
+    // Display Latest Currency Rates
+    router.add('/', async () => {
         let html = ratesTemplate();
-        el.html(html);
+        element.html(html);
+        try {
+            // Load Currency Rates
+            const response = await api.get('/rates');
+            const { base, date, rates } = response.data;
+            // Display rates
+            html = ratesTemplate({ base, date, rates });
+            element.html(html);
+        } catch (error) {
+            showError(error);
+        } finally {
+            // Remove loading animation
+            $('.loading').removeClass('loading');
+        }
     });
+
 
     router.add('/exchange', () => {
         let html = exchangeTemplate();
-        el.html(html);
+        element.html(html);
     });
 
     router.add('/historical', () => {
         let html = historicalTemplate();
-        el.html(html);
+        element.html(html);
     });
 
     // Navigate app to current url
