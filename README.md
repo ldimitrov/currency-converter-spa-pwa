@@ -18,5 +18,6 @@ SYMBOLS=BTC,USD,BGN,GBP,JPY
 Than you should be able to access the app locally http://localhost:3000/
 
 # TODOS
+* implement service-worker and add manifest.json for native support (PWA)
 * bundle all scripts in a single request
 * write tests, tests, tests
