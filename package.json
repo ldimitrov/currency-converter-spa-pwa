@@ -1,0 +1,21 @@
+{
+  "name": "currency-converter-spa-pwa",
+  "version": "1.0.0",
+  "description": "Vanilla JS implementation of a SPA currency converter build as a Progressive Web Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldimitrov/currency-converter-spa-pwa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldimitrov/currency-converter-spa-pwa/issues"
+  },
+  "homepage": "https://github.com/ldimitrov/currency-converter-spa-pwa#readme"
+}
