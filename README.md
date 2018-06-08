@@ -1,5 +1,5 @@
 # currency-converter-spa-pwa
-Vanilla JS implementation of a SPA currency converter build as a Progressive Web Application
+Vanilla JS implementation of a SPA currency converter
 
 Things you need to do:
  * Register an account at https://fixer.io/ to get an API access key
